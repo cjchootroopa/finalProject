@@ -7,7 +7,7 @@ public class ModelUsers {
     public ModelUsers() {
     }
 
-    String onlineStatus;
+
     String typingTo;
 
     public String getName() {
@@ -52,7 +52,6 @@ public class ModelUsers {
 
     public ModelUsers(String name, String onlineStatus, String typingTo, String email, String image, String uid) {
         this.name = name;
-        this.onlineStatus = onlineStatus;
         this.typingTo = typingTo;
         this.email = email;
         this.image = image;

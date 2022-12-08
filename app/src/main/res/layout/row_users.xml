@@ -44,13 +44,6 @@
                 android:text="Person Email"
                 android:textColor="@color/colorBlack" />
 
-            <TextView
-                android:id="@+id/tvMessageThem"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Send a Message!"
-                android:textAlignment="textEnd" />
-
         </LinearLayout>
 
     </LinearLayout>
