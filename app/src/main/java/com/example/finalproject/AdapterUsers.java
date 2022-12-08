@@ -1,6 +1,7 @@
 package com.example.finalproject;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
+
+//    private ArrayList<>
 
     Context context;
     FirebaseAuth firebaseAuth;
@@ -40,6 +43,10 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, final int position) {
+
+//        holder.particularemail.setText(ModelUsers.getName());
+//        String uri=ModelUsers.getImage();
+
         final String hisuid = list.get(position).getUid();
         String userImage = list.get(position).getImage();
         String username = list.get(position).getName();
@@ -50,6 +57,7 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
             Glide.with(context).load(userImage).into(holder.profiletv);
         } catch (Exception e) {
         }
+
     }
 
     @Override
@@ -67,6 +75,13 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
             profiletv = itemView.findViewById(R.id.imagep);
             name = itemView.findViewById(R.id.namep);
             email = itemView.findViewById(R.id.emailp);
+            itemView.findViewById(R.id.tvMessageThem).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d("demo","onClick: Hello!");
+                }
+            });
         }
+
     }
 }

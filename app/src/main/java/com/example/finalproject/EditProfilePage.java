@@ -138,7 +138,7 @@ public class EditProfilePage extends AppCompatActivity {
         btnMusic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MusicActivity.class);
+                Intent intent = new Intent(getBaseContext(), MusicActivity.class);
                 startActivity(intent);
             }
         });
