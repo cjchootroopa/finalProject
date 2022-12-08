@@ -51,7 +51,7 @@
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_unblock"
+            android:src="@drawable/send_message"
             android:scaleType="fitCenter"/>
 
         <ImageView
@@ -61,7 +61,7 @@
             android:layout_below="@id/blocking"
             android:layout_alignParentEnd="true"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_unblock"
+            android:src="@drawable/send_message"
             android:scaleType="fitCenter"/>
 
     </RelativeLayout>

@@ -1,7 +1,5 @@
 package com.example.finalproject;
 
-
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -58,7 +56,6 @@ public class PostDetailsActivity extends AppCompatActivity {
     ActionBar actionBar;
     ProgressDialog progressDialog;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +83,6 @@ public class PostDetailsActivity extends AppCompatActivity {
         imagep = findViewById(R.id.commentimge);
         share = findViewById(R.id.share);
         profile = findViewById(R.id.profilelayout);
-       // profile = findViewById(R.id.profilelayout);
         progressDialog = new ProgressDialog(this);
         loadPostInfo();
 

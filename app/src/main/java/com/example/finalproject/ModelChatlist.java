@@ -1,6 +1,5 @@
 package com.example.finalproject;
 
-
 class ModelChatList {
 
     public String getId() {

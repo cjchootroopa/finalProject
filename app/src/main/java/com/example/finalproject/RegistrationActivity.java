@@ -2,6 +2,7 @@ package com.example.finalproject;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -37,7 +38,10 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
+        SharedPreferences.Editor myEdit = sharedPreferences.edit();
         ActionBar actionBar = getSupportActionBar();
+
         actionBar.setTitle("Create Account");
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -63,7 +67,13 @@ public class RegistrationActivity extends AppCompatActivity {
                     password.setError("Length Must be greater than 6 character");
                     password.setFocusable(true);
                 } else {
-                    registerUser(emaill, pass, uname);
+                    myEdit.putString("username", uname);
+                    myEdit.putString("email", emaill);
+                    myEdit.putString("password", pass);
+                    myEdit.commit();
+                    sendEmail();
+                    startActivity(new Intent(RegistrationActivity.this, VerificationActivity.class));
+                    //registerUser(emaill, pass, uname);
                 }
             }
         });
@@ -73,45 +83,30 @@ public class RegistrationActivity extends AppCompatActivity {
                 startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
             }
         });
+
+
     }
 
-    private void registerUser(String emaill, final String pass, final String uname) {
-        progressDialog.show();
-        mAuth.createUserWithEmailAndPassword(emaill, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    progressDialog.dismiss();
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    String email = user.getEmail();
-                    String uid = user.getUid();
-                    HashMap<Object, String> hashMap = new HashMap<>();
-                    hashMap.put("email", email);
-                    hashMap.put("uid", uid);
-                    hashMap.put("name", uname);
-                    hashMap.put("onlineStatus", "online");
-                    hashMap.put("typingTo", "noOne");
-                    hashMap.put("image", "");
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference reference = database.getReference("Users");
-                    reference.child(uid).setValue(hashMap);
-                    Toast.makeText(RegistrationActivity.this, "Registered User " + user.getEmail(), Toast.LENGTH_LONG).show();
-                    Intent mainIntent = new Intent(RegistrationActivity.this, DashboardActivity.class);
-                    mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(mainIntent);
-                    finish();
-                } else {
-                    progressDialog.dismiss();
-                    Toast.makeText(RegistrationActivity.this, "Error", Toast.LENGTH_LONG).show();
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                progressDialog.dismiss();
-                Toast.makeText(RegistrationActivity.this, "Error Occurred", Toast.LENGTH_LONG).show();
-            }
-        });
+
+    private void sendEmail() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
+        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+        //Getting content for email
+        int max = 999999;
+        int min = 100000;
+        int range = max - min + 1;
+        int code = (int)Math.floor(Math.random()*(max-min+1)+min);
+        email = findViewById(R.id.register_email);
+        String emails = email.getText().toString();
+        String subject = String.format("Account Verification Code");
+        String message = String.format("Here is Attach ur account verification Code \n Verification Code :"+code+" \n enjoy our app~");
+        myEdit.putInt("code",code);
+        myEdit.commit();
+        //Creating SendMail object
+        SendMail sm = new SendMail( this,emails, subject, message);
+
+        //Executing sendmail to send email
+        sm.execute();
     }
 
     @Override
@@ -119,4 +114,10 @@ public class RegistrationActivity extends AppCompatActivity {
         onBackPressed();
         return super.onSupportNavigateUp();
     }
+
+
+    public void onClick(View view) {
+        sendEmail();
+    }
+
 }
