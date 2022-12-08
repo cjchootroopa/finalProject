@@ -137,7 +137,6 @@ public class ChatActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     String nameh = "" + dataSnapshot1.child("name").getValue();
                     image = "" + dataSnapshot1.child("image").getValue();
-                    String onlinestatus = "" + dataSnapshot1.child("onlineStatus").getValue();
                     String typingto = "" + dataSnapshot1.child("typingTo").getValue();
                     if (typingto.equals(myuid)) {// if user is typing to my chat
                         userstatus.setText("Typing....");// type status as typing
@@ -219,12 +218,9 @@ public class ChatActivity extends AppCompatActivity {
                 chatList.clear();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     ModelChat modelChat = dataSnapshot1.getValue(ModelChat.class);
-                    if (modelChat.getSender().equals(myuid) &&
-                            modelChat.getReceiver().equals(uid) ||
-                            modelChat.getReceiver().equals(myuid)
-                                    && modelChat.getSender().equals(uid)) {
+
                         chatList.add(modelChat); // add the chat in chatlist
-                    }
+
                     adapterChat = new AdapterChat(ChatActivity.this, chatList, image);
                     adapterChat.notifyDataSetChanged();
                     recyclerView.setAdapter(adapterChat);
