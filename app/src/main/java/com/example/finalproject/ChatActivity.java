@@ -142,14 +142,11 @@ public class ChatActivity extends AppCompatActivity {
                     if (typingto.equals(myuid)) {// if user is typing to my chat
                         userstatus.setText("Typing....");// type status as typing
                     } else {
-                        if (onlinestatus.equals("online")) {
-                            userstatus.setText(onlinestatus);
-                        } else {
+
                             Calendar calendar = Calendar.getInstance();
-                            calendar.setTimeInMillis(Long.parseLong(onlinestatus));
                             String timedate = DateFormat.format("dd/MM/yyyy hh:mm aa", calendar).toString();
                             userstatus.setText("Last Seen:" + timedate);
-                        }
+
                     }
                     name.setText(nameh);
                     try {
@@ -173,13 +170,13 @@ public class ChatActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         String timestamp = String.valueOf(System.currentTimeMillis());
-        checkOnlineStatus(timestamp);
+//        checkOnlineStatus(timestamp);
         checkTypingStatus("noOne");
     }
 
     @Override
     protected void onResume() {
-        checkOnlineStatus("online");
+//        checkOnlineStatus("online");
         super.onResume();
     }
 
@@ -189,13 +186,13 @@ public class ChatActivity extends AppCompatActivity {
         return super.onSupportNavigateUp();
     }
 
-    private void checkOnlineStatus(String status) {
-        // check online status
-        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Users").child(myuid);
-        HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("onlineStatus", status);
-        dbref.updateChildren(hashMap);
-    }
+//    private void checkOnlineStatus(String status) {
+//        // check online status
+//        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Users").child(myuid);
+//        HashMap<String, Object> hashMap = new HashMap<>();
+//        hashMap.put("onlineStatus", status);
+//        dbref.updateChildren(hashMap);
+//    }
 
     private void checkTypingStatus(String typing) {
         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Users").child(myuid);
@@ -207,7 +204,7 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         checkUserStatus();
-        checkOnlineStatus("online");
+//        checkOnlineStatus("online");
         super.onStart();
     }
 
