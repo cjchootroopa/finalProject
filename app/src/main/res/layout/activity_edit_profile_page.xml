@@ -13,7 +13,7 @@
         android:layout_marginTop="50dp"
         android:text="Edit Profile Data"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+
         android:textSize="26sp" />
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -31,7 +31,7 @@
         android:layout_marginTop="20dp"
         android:text="Update Profile Pic"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+
         android:textSize="20sp" />
 
     <TextView
@@ -41,7 +41,7 @@
         android:layout_marginTop="20dp"
         android:text="Update Name"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+
         android:textSize="20sp" />
 
     <TextView
@@ -51,7 +51,7 @@
         android:layout_marginTop="20dp"
         android:text="Change Password "
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+
         android:textSize="20sp" />
 
     <Button
@@ -60,5 +60,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="MUSIC" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/swtichBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="light mode"
+        android:textAlignment="textStart"
+        android:textSize="50dp"
+       />
+
 
 </LinearLayout>

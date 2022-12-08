@@ -67,7 +67,8 @@
             android:layout_height="wrap_content"
             android:text="Title"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/colorBlack"/>
 
         <TextView
             android:id="@+id/descript"
