@@ -97,6 +97,7 @@ public class AddBlogsFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     name = dataSnapshot1.child("name").getValue().toString();
+                    uid = dataSnapshot1.child("uid").getValue().toString();
                 email = "" + dataSnapshot1.child("email").getValue();
                 dp = "" + dataSnapshot1.child("image").getValue().toString();
             } }
