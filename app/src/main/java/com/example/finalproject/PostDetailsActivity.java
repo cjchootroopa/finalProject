@@ -81,7 +81,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         comment = findViewById(R.id.typecommet);
         sendb = findViewById(R.id.sendcomment);
         imagep = findViewById(R.id.commentimge);
-        share = findViewById(R.id.share);
+
         profile = findViewById(R.id.profilelayout);
         progressDialog = new ProgressDialog(this);
         loadPostInfo();
