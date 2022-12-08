@@ -67,8 +67,6 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
 //
 //                }
 
-
-
         holder.name.setText(username);
         holder.email.setText(usermail);
         try {

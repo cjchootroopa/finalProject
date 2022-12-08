@@ -139,18 +139,30 @@ public class EditProfilePage extends AppCompatActivity {
         btnMusic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = getPackageManager().getLaunchIntentForPackage("com.whatsapp");
-                if (i != null) {
+//                Intent i = getPackageManager().getLaunchIntentForPackage("com.whatsapp");
+//                if (i != null) {
+//                    try {
+//                        startActivity(i);
+//                    } catch (ActivityNotFoundException err) {
+//                        Toast t = Toast.makeText(getApplicationContext(),
+//                                "App is not found", Toast.LENGTH_SHORT);
+//                        t.show();
+//                    }
+//                }
+//                Intent intent = new Intent(getBaseContext(), MusicActivity.class);
+//                startActivity(intent);
+                Intent intent = new Intent(getBaseContext(), MusicActivity.class);
+                if (intent != null) {
                     try {
-                        startActivity(i);
+                        startActivity(intent);
                     } catch (ActivityNotFoundException err) {
                         Toast t = Toast.makeText(getApplicationContext(),
-                                "App is not found", Toast.LENGTH_SHORT);
+                                "Failed to Transact, Please try again.", Toast.LENGTH_SHORT);
                         t.show();
                     }
                 }
-//                Intent intent = new Intent(getBaseContext(), MusicActivity.class);
-//                startActivity(intent);
+
+
             }
         });
     }
