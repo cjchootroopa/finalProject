@@ -80,7 +80,7 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, ChatActivity.class);
-                intent.putExtra("uiD", modelUsers.getUid());
+                intent.putExtra("uid", modelUsers.getUid());
 //                intent.putExtra("name", modelUsers.getName());
 //                intent.putExtra("image", modelUsers.getImage());
                 context.startActivity(intent);
