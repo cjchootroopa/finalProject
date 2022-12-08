@@ -30,6 +30,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,8 +53,9 @@ public class AddBlogsFragment extends Fragment {
     public AddBlogsFragment() {
         // Required empty public constructor
     }
-
+    FirebaseUser firebaseUser;
     FirebaseAuth firebaseAuth;
+    FirebaseDatabase firebaseDatabase;
     EditText title, des;
     private static final int CAMERA_REQUEST = 100;
     private static final int STORAGE_REQUEST = 200;
@@ -74,6 +76,9 @@ public class AddBlogsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("Users");
         View view = inflater.inflate(R.layout.fragment_add_blogs, container, false);
 
         title = view.findViewById(R.id.ptitle);
@@ -85,14 +90,13 @@ public class AddBlogsFragment extends Fragment {
         Intent intent = getActivity().getIntent();
 
         // Retrieving the user data like name ,email and profile pic using query
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-        Query query = databaseReference.orderByChild("email").equalTo(email);
+        Query query = databaseReference.orderByChild("email").equalTo(firebaseUser.getEmail());
+
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     name = dataSnapshot1.child("name").getValue().toString();
-
                 email = "" + dataSnapshot1.child("email").getValue();
                 dp = "" + dataSnapshot1.child("image").getValue().toString();
             } }

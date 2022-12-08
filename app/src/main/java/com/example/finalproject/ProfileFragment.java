@@ -2,17 +2,21 @@ package com.example.finalproject;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,6 +45,8 @@ public class ProfileFragment extends Fragment {
     FirebaseUser firebaseUser;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    SwitchCompat switchCompat;
+    SharedPreferences sharedPreferences = null;
     ImageView avatartv, covertv;
     TextView nam, email, phone;
     RecyclerView postrecycle;
@@ -83,6 +89,8 @@ public class ProfileFragment extends Fragment {
         pd = new ProgressDialog(getActivity());
         loadMyPosts();
         pd.setCanceledOnTouchOutside(false);
+
+
 
         // Retrieving user data from firebase
         Query query = databaseReference.orderByChild("email").equalTo(firebaseUser.getEmail());
