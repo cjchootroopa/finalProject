@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">finalProject</string>
+    <string name="app_name">Snowwie</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="text">Night Mode</string>
+    <string name="chat">chat</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
