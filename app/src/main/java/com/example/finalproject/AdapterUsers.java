@@ -59,14 +59,6 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
         String username = list.get(position).getName();
         String usermail = list.get(position).getEmail();
 
-
-
-//                if (modelUsers.onlineStatus.contains("online")) {
-//
-//                } else {
-//
-//                }
-
         holder.name.setText(username);
         holder.email.setText(usermail);
         try {
@@ -79,8 +71,8 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
             public void onClick(View view) {
                 Intent intent = new Intent(context, ChatActivity.class);
                 intent.putExtra("uid", modelUsers.getUid());
-//                intent.putExtra("name", modelUsers.getName());
-//                intent.putExtra("image", modelUsers.getImage());
+                intent.putExtra("name", modelUsers.getName());
+                intent.putExtra("image", modelUsers.getImage());
                 context.startActivity(intent);
             }
         });

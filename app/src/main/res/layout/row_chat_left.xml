@@ -57,6 +57,6 @@
         android:gravity="end"
         android:text="Delivered"
         android:textAlignment="textEnd"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
 </LinearLayout>

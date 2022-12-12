@@ -62,7 +62,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="5dp"
-                android:src="@drawable/ic_unblock" />
+                android:src="@drawable/ic_unblock"
+                android:visibility="invisible" />
         </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
