@@ -147,28 +147,29 @@ public class EditProfilePage extends AppCompatActivity {
         btnMusic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i = getPackageManager().getLaunchIntentForPackage("com.whatsapp");
-//                if (i != null) {
-//                    try {
-//                        startActivity(i);
-//                    } catch (ActivityNotFoundException err) {
-//                        Toast t = Toast.makeText(getApplicationContext(),
-//                                "App is not found", Toast.LENGTH_SHORT);
-//                        t.show();
-//                    }
-//                }
-//                Intent intent = new Intent(getBaseContext(), MusicActivity.class);
-//                startActivity(intent);
-                Intent intent = new Intent(getBaseContext(), MusicActivity.class);
-                if (intent != null) {
+                Uri webpage = Uri.parse("https://music.youtube.com/");
+                Intent i = new Intent(Intent.ACTION_VIEW, webpage);
+                if (i != null) {
                     try {
-                        startActivity(intent);
+                        startActivity(i);
                     } catch (ActivityNotFoundException err) {
                         Toast t = Toast.makeText(getApplicationContext(),
-                                "Failed to Transact, Please try again.", Toast.LENGTH_SHORT);
+                                "App is not found", Toast.LENGTH_SHORT);
                         t.show();
                     }
                 }
+
+                startActivity(i);
+//                Intent intent = new Intent(getBaseContext(), MusicActivity.class);
+//                if (intent != null) {
+//                    try {
+//                        startActivity(intent);
+//                    } catch (ActivityNotFoundException err) {
+//                        Toast t = Toast.makeText(getApplicationContext(),
+//                                "Failed to Transact, Please try again.", Toast.LENGTH_SHORT);
+//                        t.show();
+//                    }
+//                }
 
 
             }

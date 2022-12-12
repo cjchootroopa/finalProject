@@ -137,14 +137,19 @@ public class ChatActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     String nameh = "" + dataSnapshot1.child("name").getValue();
                     image = "" + dataSnapshot1.child("image").getValue();
+                    String onlinestatus = "" + dataSnapshot1.child("onlineStatus").getValue();
                     String typingto = "" + dataSnapshot1.child("typingTo").getValue();
                     if (typingto.equals(myuid)) {// if user is typing to my chat
                         userstatus.setText("Typing....");// type status as typing
                     } else {
+                        if (onlinestatus.equals("online")) {
+                            userstatus.setText(onlinestatus);
+                        } else {
 
                             Calendar calendar = Calendar.getInstance();
                             String timedate = DateFormat.format("dd/MM/yyyy hh:mm aa", calendar).toString();
                             userstatus.setText("Last Seen:" + timedate);
+                        }
 
                     }
                     name.setText(nameh);
@@ -169,13 +174,13 @@ public class ChatActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         String timestamp = String.valueOf(System.currentTimeMillis());
-//        checkOnlineStatus(timestamp);
+        checkOnlineStatus(timestamp);
         checkTypingStatus("noOne");
     }
 
     @Override
     protected void onResume() {
-//        checkOnlineStatus("online");
+        checkOnlineStatus("online");
         super.onResume();
     }
 
@@ -185,13 +190,13 @@ public class ChatActivity extends AppCompatActivity {
         return super.onSupportNavigateUp();
     }
 
-//    private void checkOnlineStatus(String status) {
-//        // check online status
-//        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Users").child(myuid);
-//        HashMap<String, Object> hashMap = new HashMap<>();
-//        hashMap.put("onlineStatus", status);
-//        dbref.updateChildren(hashMap);
-//    }
+    private void checkOnlineStatus(String status) {
+        // check online status
+        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Users").child(myuid);
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("onlineStatus", status);
+        dbref.updateChildren(hashMap);
+    }
 
     private void checkTypingStatus(String typing) {
         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Users").child(myuid);
@@ -219,7 +224,12 @@ public class ChatActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     ModelChat modelChat = dataSnapshot1.getValue(ModelChat.class);
 
+                    if (modelChat.getSender().equals(myuid) &&
+                            modelChat.getReceiver().equals(uid) ||
+                            modelChat.getReceiver().equals(myuid)
+                                    && modelChat.getSender().equals(uid)) {
                         chatList.add(modelChat); // add the chat in chatlist
+                    }
 
                     adapterChat = new AdapterChat(ChatActivity.this, chatList, image);
                     adapterChat.notifyDataSetChanged();
