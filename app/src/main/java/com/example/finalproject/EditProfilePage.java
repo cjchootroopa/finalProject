@@ -2,6 +2,7 @@ package com.example.finalproject;
 
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -51,7 +52,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 public class EditProfilePage extends AppCompatActivity {
 
@@ -61,10 +61,10 @@ public class EditProfilePage extends AppCompatActivity {
     DatabaseReference databaseReference;
     StorageReference storageReference;
     String storagepath = "Users_Profile_Cover_image/";
-    String uid;
+    String uid ,name ;
     ImageView set;
-    TextView profilepic, editname, editpassword;
-    Button btnMusic;
+    TextView profilepic, editname, editpassword ,userName;
+    Button btnMusic ,btnLogout;
     ProgressDialog pd;
     private static final int CAMERA_REQUEST = 100;
     private static final int STORAGE_REQUEST = 200;
@@ -77,13 +77,15 @@ public class EditProfilePage extends AppCompatActivity {
 
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile_page);
 
         SwitchMaterial switchbtn = findViewById(R.id.swtichBtn);
-
+        userName = findViewById(R.id.username);
+        btnLogout = findViewById(R.id.btnLogout);
         btnMusic = findViewById(R.id.btnMusic);
         profilepic = findViewById(R.id.profilepic);
         editname = findViewById(R.id.editname);
@@ -96,6 +98,7 @@ public class EditProfilePage extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
         databaseReference = firebaseDatabase.getReference("Users");
+//        String username = firebaseUser
         cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
         Query query = databaseReference.orderByChild("email").equalTo(firebaseUser.getEmail());
@@ -103,11 +106,12 @@ public class EditProfilePage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-
+                    name = dataSnapshot1.child("name").getValue().toString();
                     String image = "" + dataSnapshot1.child("image").getValue();
 
                     try {
                         Glide.with(EditProfilePage.this).load(image).into(set);
+                        userName.setText(name);
                     } catch (Exception e) {
                     }
                 }
@@ -119,6 +123,18 @@ public class EditProfilePage extends AppCompatActivity {
             }
         });
 
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               finish();
+                firebaseAuth.signOut();
+                Intent intent = new Intent(EditProfilePage.this, SplashScreen.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+
+
+            }
+        });
         editpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -350,7 +366,7 @@ public class EditProfilePage extends AppCompatActivity {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
                                         pd.dismiss();
-                                        Toast.makeText(EditProfilePage.this, "Failed", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(EditProfilePage.this, "Old Password Incorrect", Toast.LENGTH_LONG).show();
                                     }
                                 });
                     }

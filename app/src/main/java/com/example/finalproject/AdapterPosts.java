@@ -211,9 +211,13 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
 
                 if (dataSnapshot.child(pid).hasChild(myuid)) {
                     holder.likebtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_liked, 0, 0, 0);
+//                    holder.comment.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_comment, 0, 0, 0);
                     holder.likebtn.setText("Liked");
                 } else {
+
                     holder.likebtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like, 0, 0, 0);
+//                    holder.comment.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_comment, 0, 0, 0);
+
                     holder.likebtn.setText("Like");
                 }
             }
@@ -232,7 +236,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
     }
 
     class MyHolder extends RecyclerView.ViewHolder {
-        ImageView picture, image;
+        ImageView picture, image , iclike , icliked;
         TextView name, time, title, description, like, comments;
         ImageButton more;
         Button likebtn, comment;

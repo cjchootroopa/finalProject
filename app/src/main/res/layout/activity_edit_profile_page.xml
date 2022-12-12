@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Change Profile Data"
+        android:text="Change My Profile "
         android:textAlignment="center"
 
         android:textSize="26sp" />
@@ -23,6 +23,14 @@
         android:layout_marginStart="140dp"
         android:layout_marginTop="40dp"
         android:src="@drawable/ic_users" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/profilepic"
@@ -68,6 +76,12 @@
         android:text="light mode"
         android:textAlignment="textStart"
         android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log out" />
 
 
 </LinearLayout>
