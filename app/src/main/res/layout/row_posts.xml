@@ -40,6 +40,7 @@
                     android:id="@+id/unametv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
                     android:text="Name"
                     android:textColor="@color/colorBlack"
                     android:textSize="20sp" />
@@ -48,6 +49,7 @@
                     android:id="@+id/utimetv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
                     android:text="33 min" />
 
             </LinearLayout>

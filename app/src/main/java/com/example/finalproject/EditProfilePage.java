@@ -296,6 +296,7 @@ public class EditProfilePage extends AppCompatActivity {
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_update_password, null);
         final EditText oldpass = view.findViewById(R.id.oldpasslog);
         final EditText newpass = view.findViewById(R.id.newpasslog);
+        final EditText comfirmpas = view.findViewById(R.id.comfirmpaslog);
         Button editpass = view.findViewById(R.id.updatepass);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(view);
@@ -306,6 +307,7 @@ public class EditProfilePage extends AppCompatActivity {
             public void onClick(View v) {
                 String oldp = oldpass.getText().toString().trim();
                 String newp = newpass.getText().toString().trim();
+                String comwp = comfirmpas.getText().toString().trim();
                 if (TextUtils.isEmpty(oldp)) {
                     Toast.makeText(EditProfilePage.this, "Current Password cant be empty", Toast.LENGTH_LONG).show();
                     return;
@@ -314,6 +316,12 @@ public class EditProfilePage extends AppCompatActivity {
                     Toast.makeText(EditProfilePage.this, "New Password cant be empty", Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(newp.equals(comwp)){
+                    Toast.makeText(EditProfilePage.this, "Password and comfirm Password does not match", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+
                 dialog.dismiss();
                 updatePassword(oldp, newp);
             }

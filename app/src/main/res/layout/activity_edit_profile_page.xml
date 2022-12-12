@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Edit Profile Data"
+        android:text="Change Profile Data"
         android:textAlignment="center"
 
         android:textSize="26sp" />
@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Update Name"
+        android:text="Change Name"
         android:textAlignment="center"
 
         android:textSize="20sp" />
@@ -67,8 +67,7 @@
         android:layout_height="wrap_content"
         android:text="light mode"
         android:textAlignment="textStart"
-        android:textSize="50dp"
-       />
+        android:textSize="20sp" />
 
 
 </LinearLayout>
