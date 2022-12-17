@@ -39,13 +39,13 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'com.google.firebase:firebase-storage:20.1.0'
     implementation 'com.google.firebase:firebase-firestore:24.4.1'
-    implementation files('C:\\Users\\Adminstrator\\AndroidStudioProjects\\finalProject\\libs\\activation.jar')
-    implementation files('C:\\Users\\Adminstrator\\AndroidStudioProjects\\finalProject\\libs\\additional.jar')
-    implementation files('C:\\Users\\Adminstrator\\AndroidStudioProjects\\finalProject\\libs\\mail.jar')
+//    implementation files('C:\\Users\\Adminstrator\\AndroidStudioProjects\\finalProject\\libs\\activation.jar')
+//    implementation files('C:\\Users\\Adminstrator\\AndroidStudioProjects\\finalProject\\libs\\additional.jar')
+//    implementation files('C:\\Users\\Adminstrator\\AndroidStudioProjects\\finalProject\\libs\\mail.jar')
 
-//    implementation files('C:\\Users\\CJ\\AndroidStudioProjects\\FYPProject\\libs\\activation.jar')
-//    implementation files('C:\\Users\\CJ\\AndroidStudioProjects\\FYPProject\\libs\\additional.jar')
-//    implementation files('C:\\Users\\CJ\\AndroidStudioProjects\\FYPProject\\libs\\mail.jar')
+    implementation files('C:\\Users\\CJ\\AndroidStudioProjects\\finalProject\\libs\\activation.jar')
+    implementation files('C:\\Users\\CJ\\AndroidStudioProjects\\finalProject\\libs\\additional.jar')
+    implementation files('C:\\Users\\CJ\\AndroidStudioProjects\\finalProject\\libs\\mail.jar')
 //    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
