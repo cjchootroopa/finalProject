@@ -333,9 +333,15 @@ public class EditProfilePage extends AppCompatActivity {
                     Toast.makeText(EditProfilePage.this, "New Password cant be empty", Toast.LENGTH_LONG).show();
                     return;
                 }
-                if(newp.equals(comwp)){
+                if(!newp.equals(comwp)){
                     Toast.makeText(EditProfilePage.this, "Password and comfirm Password does not match", Toast.LENGTH_LONG).show();
                     return;
+                }
+                if (!checkString(newp))
+
+                 {
+                     Toast.makeText(EditProfilePage.this," The password must have atleast one captial, lower letter and number" , Toast.LENGTH_LONG).show();
+                     return;
                 }
 
 
@@ -449,6 +455,28 @@ public class EditProfilePage extends AppCompatActivity {
             }
         });
         builder.create().show();
+    }
+
+
+    private static boolean checkString(String str) {
+        char ch;
+        boolean capitalFlag = false;
+        boolean lowerCaseFlag = false;
+        boolean numberFlag = false;
+        for(int i=0;i < str.length();i++) {
+            ch = str.charAt(i);
+            if( Character.isDigit(ch)) {
+                numberFlag = true;
+            }
+            else if (Character.isUpperCase(ch)) {
+                capitalFlag = true;
+            } else if (Character.isLowerCase(ch)) {
+                lowerCaseFlag = true;
+            }
+            if(numberFlag && capitalFlag && lowerCaseFlag)
+                return true;
+        }
+        return false;
     }
 
     // Here we are showing image pic dialog where we will select
