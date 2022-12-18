@@ -28,7 +28,7 @@ import java.util.HashMap;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    private EditText email, password, name;
+    private EditText email, password , compassword, name;
     private Button mRegister;
     private TextView existaccount;
     private ProgressDialog progressDialog;
@@ -48,6 +48,7 @@ public class RegistrationActivity extends AppCompatActivity {
         email = findViewById(R.id.register_email);
         name = findViewById(R.id.register_name);
         password = findViewById(R.id.register_password);
+        compassword = findViewById(R.id.comfirmpasswordlog);
         mRegister = findViewById(R.id.register_button);
         existaccount = findViewById(R.id.homepage);
         mAuth = FirebaseAuth.getInstance();
@@ -62,6 +63,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 String emaill = email.getText().toString().trim();
                 String uname = name.getText().toString().trim();
                 String pass = password.getText().toString().trim();
+                String conPass= compassword.getText().toString().trim();
                 if (uname.isEmpty()) {
                     name.setError("Name could not be empty");
                     name.setFocusable(true);
@@ -80,6 +82,11 @@ public class RegistrationActivity extends AppCompatActivity {
                 if(!checkString(pass) || pass.length() < 6 || pass.length() >16 ){
                     password.setError("The password must have atleast one captial, lower letter and number and  greater than 6 but smaller than 16");
                     password.setFocusable(true);
+                    error = true;
+                }
+                if(!pass.equals(conPass)){
+                    compassword.setError("The password does not match");
+                    compassword.setFocusable(true);
                     error = true;
                 }
                 if(error ==false){

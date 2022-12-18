@@ -87,17 +87,37 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="30dp"
-
-
         android:hint="Password..."
         android:inputType="textPassword"
         android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/comfirmpassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_password"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp"
+        android:text="Comfirm Password"
+        android:textColor="@color/colorBlack"/>
+
+    <EditText
+        android:id="@+id/comfirmpasswordlog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:inputType="textPassword"
+        android:layout_below="@+id/comfirmpassword"
+        android:hint="Comfirm Password..."/>
 
     <Button
         android:id="@+id/register_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/register_password"
+        android:layout_below="@+id/comfirmpasswordlog"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="30dp"
@@ -115,7 +135,7 @@
         android:layout_below="@+id/register_button"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="23dp"
         android:text=" Already Have a Account?Sign In"
         android:textAlignment="center"
