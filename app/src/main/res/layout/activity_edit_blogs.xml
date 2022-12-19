@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddBlogsFragment">
+    tools:context=".EditBlogs">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +14,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/ptitle"
+            android:id="@+id/Editptitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -23,7 +24,7 @@
             android:singleLine="true" />
 
         <ImageView
-            android:id="@+id/imagep"
+            android:id="@+id/Editimagep"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginTop="15dp"
@@ -49,9 +50,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginTop="20sp"
-            android:text="Upload"
+            android:text="Edit"
             android:textAlignment="center"
             tools:ignore="RtlCompat" />
     </LinearLayout>
 
 </ScrollView>
+</layout>

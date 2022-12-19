@@ -74,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="light mode"
-        android:textAlignment="textStart"
+        android:textAlignment="center"
         android:textSize="20sp" />
 
     <Button

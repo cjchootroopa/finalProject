@@ -1,8 +1,10 @@
 package com.example.finalproject;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.format.DateFormat;
 import android.view.Gravity;
@@ -23,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.finalproject.databinding.FragmentHomeBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -157,6 +160,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
         PopupMenu popupMenu = new PopupMenu(context, more, Gravity.END);
         if (uid.equals(myuid)) {
             popupMenu.getMenu().add(Menu.NONE, 0, 0, "DELETE");
+//            popupMenu.getMenu().add(Menu.NONE, 1, 1, "EDIT");
         }
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
@@ -164,6 +168,11 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
                 if (item.getItemId() == 0) {
                     deltewithImage(pid, image);
                 }
+//                if (item.getItemId() == 1) {
+//                    Intent intent = new Intent(context, EditBlogs.class);
+//                    intent.putExtra("pid", pid);
+//                    context.startActivity(intent);
+//                }
 
                 return false;
             }
@@ -172,36 +181,55 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
     }
 
     private void deltewithImage(final String pid, String image) {
-        final ProgressDialog pd = new ProgressDialog(context);
-        pd.setMessage("Deleting");
-        StorageReference picref = FirebaseStorage.getInstance().getReferenceFromUrl(image);
-        picref.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
-            public void onSuccess(Void aVoid) {
-                Query query = FirebaseDatabase.getInstance().getReference("Posts").orderByChild("ptime").equalTo(pid);
-                query.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                            dataSnapshot1.getRef().removeValue();
-                        }
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //Yes button clicked
+                        final ProgressDialog pd = new ProgressDialog(context);
+                        pd.setMessage("Deleting");
+                        StorageReference picref = FirebaseStorage.getInstance().getReferenceFromUrl(image);
+                        picref.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Query query = FirebaseDatabase.getInstance().getReference("Posts").orderByChild("ptime").equalTo(pid);
+                                query.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                                            dataSnapshot1.getRef().removeValue();
+                                        }
 
-                        pd.dismiss();
-                        Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_LONG).show();
-                    }
+                                        pd.dismiss();
+                                        Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_LONG).show();
+                                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    }
-                });
+                                    }
+                                });
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+
+                            }
+                        });
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        break;
+                }
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
+        };
 
-            }
-        });
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
+
     }
 
     private void setLikes(final MyHolder holder, final String pid) {

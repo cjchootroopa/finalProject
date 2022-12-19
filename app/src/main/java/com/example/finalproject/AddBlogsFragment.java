@@ -82,9 +82,9 @@ public class AddBlogsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add_blogs, container, false);
 
         title = view.findViewById(R.id.ptitle);
-        des = view.findViewById(R.id.pdes);
+        des = view.findViewById(R.id.Editpdes);
         image = view.findViewById(R.id.imagep);
-        upload = view.findViewById(R.id.pupload);
+        upload = view.findViewById(R.id.Editpupload);
         pd = new ProgressDialog(getContext());
         pd.setCanceledOnTouchOutside(false);
         Intent intent = getActivity().getIntent();
