@@ -163,29 +163,20 @@ public class EditProfilePage extends AppCompatActivity {
         btnMusic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri webpage = Uri.parse("https://music.youtube.com/");
-                Intent i = new Intent(Intent.ACTION_VIEW, webpage);
-                if (i != null) {
-                    try {
-                        startActivity(i);
-                    } catch (ActivityNotFoundException err) {
-                        Toast t = Toast.makeText(getApplicationContext(),
-                                "App is not found", Toast.LENGTH_SHORT);
-                        t.show();
-                    }
-                }
-
-                startActivity(i);
-//                Intent intent = new Intent(getBaseContext(), MusicActivity.class);
-//                if (intent != null) {
+//                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                Uri webpage = Uri.parse("https://music.youtube.com/");
+//                Intent i = new Intent(Intent.ACTION_VIEW, webpage);
+//                if (i != null) {
 //                    try {
-//                        startActivity(intent);
+//                        startActivity(i);
 //                    } catch (ActivityNotFoundException err) {
 //                        Toast t = Toast.makeText(getApplicationContext(),
-//                                "Failed to Transact, Please try again.", Toast.LENGTH_SHORT);
+//                                "App is not found", Toast.LENGTH_SHORT);
 //                        t.show();
 //                    }
 //                }
+                chooseMusicApp();
+
 
 
             }
@@ -212,6 +203,44 @@ public class EditProfilePage extends AppCompatActivity {
         }else{
             switchbtn.setText("Light Mode");
         }
+    }
+
+    private void chooseMusicApp() {
+        String options[] = {"YouTube Music", "Spotify"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Play a song in");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // if access is not given then we will request for permission
+                if (which == 0) {
+                Uri webpage = Uri.parse("https://music.youtube.com/");
+                Intent i = new Intent(Intent.ACTION_VIEW, webpage);
+                if (i != null) {
+                    try {
+                        startActivity(i);
+                    } catch (ActivityNotFoundException err) {
+                        Toast t = Toast.makeText(getApplicationContext(),
+                                "App is not found", Toast.LENGTH_SHORT);
+                        t.show();
+                    }
+                }
+                } else if (which == 1) {
+                Uri webpage = Uri.parse("spotify:home");
+                Intent i = new Intent(Intent.ACTION_VIEW, webpage);
+                if (i != null) {
+                    try {
+                        startActivity(i);
+                    } catch (ActivityNotFoundException err) {
+                        Toast t = Toast.makeText(getApplicationContext(),
+                                "App is not found", Toast.LENGTH_SHORT);
+                        t.show();
+                    }
+                }
+                }
+            }
+        });
+        builder.create().show();
     }
 
     @Override
