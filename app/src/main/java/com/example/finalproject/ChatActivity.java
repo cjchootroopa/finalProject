@@ -448,8 +448,9 @@ public class ChatActivity extends AppCompatActivity {
         hashMap.put("dilihat", false);
         hashMap.put("type", "text");
         String validateMsg = message.toString();
-        if (!validateMsg.equals("fuck") && !validateMsg.equals("sohai") && !validateMsg.equals("bitch") && !validateMsg.equals("lanjiao")
-                && !validateMsg.equals("dick")){
+        if (!validateMsg.equals("fuck") && !validateMsg.equals("sohai") && !validateMsg.equals("Sohai") && !validateMsg.equals("bitch")
+                && !validateMsg.equals("Bitch") && !validateMsg.equals("lanjiao") && !validateMsg.equals("Lanjiao") && !validateMsg.equals("Dick")
+                && !validateMsg.equals("dick") && !validateMsg.equals("Fuck") && !validateMsg.equals("Shit") && !validateMsg.equals("shit")){
             databaseReference.child("Chats").push().setValue(hashMap);
             final DatabaseReference ref1 = FirebaseDatabase.getInstance().getReference("ChatList").child(uid).child(myuid);
             ref1.addValueEventListener(new ValueEventListener() {

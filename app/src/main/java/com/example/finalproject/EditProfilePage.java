@@ -212,7 +212,7 @@ public class EditProfilePage extends AppCompatActivity {
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // if access is not given then we will request for permission
+
                 if (which == 0) {
                 Uri webpage = Uri.parse("https://music.youtube.com/");
                 Intent i = new Intent(Intent.ACTION_VIEW, webpage);

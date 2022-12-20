@@ -26,7 +26,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="02/01/1990 06:19PM"
-            android:textColor="@color/colorBlack"
             android:textSize="12sp" />
 
         <TextView
@@ -37,7 +36,6 @@
             android:layout_toEndOf="@id/timetv"
             android:padding="15dp"
             android:text="His Message"
-            android:textColor="@color/colorBlack"
             android:textSize="16sp" />
 
         <ImageView
